@@ -1,0 +1,6 @@
+#!/bin/sh
+
+d=`pwd`
+cd $d
+c1541 -attach tmp.d64 -delete prog -delete /prog
+x64 -virtualdev -autostart tmp.d64
