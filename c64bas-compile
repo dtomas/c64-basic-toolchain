@@ -6,8 +6,10 @@ ide_dir=`dirname "$0"`
 cd "$ide_dir"
 ide_dir=`pwd`
  
+img_name=`basename $d`.d64
 cd $d
 cat `cat build` | "$ide_dir/convert_bas.py" | petcat -w2 -o prog
-c1541 -format tmp,00 d64 tmp.d64 -write prog
+c1541 -format tmp,00 d64 $img_name -write prog
 rm prog
-x64 +sound -warp -virtualdev -8 tmp.d64 "$ide_dir/basic-boss.vsf"
+x64 +sound -warp -virtualdev -8 $img_name "$ide_dir/basic-boss.vsf"
+c1541 -attach $img_name -delete prog -delete /prog
