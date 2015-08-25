@@ -35,7 +35,7 @@ for line in sys.stdin.readlines():
         match = CONST_RE.match(line)
         if match is None:
             raise SyntaxError("Invalid const definition: %s" % line)
-        groups = CONST_RE.match(line).groupdict()
+        groups = match.groupdict()
         parts = line.split(' ')
         name = groups['name']
         value = groups['value']
